@@ -1,0 +1,28 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow">
+<title>Tableau de bord | International Empowering Center</title><link rel="icon" href="img/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="admin.css"></head><body class="adm">
+<div id="cfgmsg" class="login" hidden><div class="box"><h1>Configuration requise</h1><p class="muted">Renseignez l’URL et la clé Supabase dans <b>config.js</b>, puis redéployez.</p></div></div>
+<div id="login" class="login" hidden><form class="box" id="lf"><img src="img/logo.svg" alt="" width="48" height="48"><h1>Espace administrateur</h1><p class="muted">Connectez-vous pour accéder au tableau de bord.</p>
+<div><label for="em">E-mail</label><input id="em" type="email" required autocomplete="username"></div><div><label for="pw">Mot de passe</label><input id="pw" type="password" required autocomplete="current-password"></div>
+<p id="lerr" class="err" role="alert"></p><button class="btn full" type="submit">Se connecter</button></form></div>
+<div id="app" hidden>
+<header class="ah"><div class="wrap"><a class="logo" href="index.html"><img src="img/logo.svg" alt="" width="36" height="36"><span class="lt"><b>International Empowering</b><small>TABLEAU DE BORD</small></span></a><div class="who2"><span id="me"></span><button class="btn alt sm" id="out">Déconnexion</button></div></div></header>
+<nav class="tabs"><div class="wrap"><button data-t="stats" class="on">Statistiques</button><button data-t="insc">Inscriptions</button><button data-t="chap">Chapitres</button><button data-t="form">Formateurs</button></div></nav>
+<main class="wrap pad">
+<div id="toast" role="status"></div>
+<section id="v-stats"></section>
+<section id="v-insc" hidden><div class="toolbar"><input id="q" placeholder="Rechercher un nom, e-mail, téléphone…"><select id="fs"><option value="">Tous les statuts</option><option>nouveau</option><option>contacté</option><option>inscrit</option><option>annulé</option></select><button class="btn alt sm" id="csv">Exporter en CSV</button></div><div class="tw"><table id="tbl"></table></div></section>
+<section id="v-chap" hidden><form class="panel2" id="cf"><h2>Ajouter / modifier un chapitre</h2><input type="hidden" id="c-id">
+<div class="g2"><div><label for="c-titre">Titre</label><input id="c-titre" required maxlength="120"></div><div><label for="c-icone">Icône</label><select id="c-icone"></select></div></div>
+<div><label for="c-desc">Description</label><textarea id="c-desc" rows="2" maxlength="300"></textarea></div>
+<div class="g4"><div><label for="c-min">Niveau minimum</label><select id="c-min"></select></div><div><label for="c-max">Niveau maximum</label><select id="c-max"></select></div><div><label for="c-ordre">Ordre</label><input id="c-ordre" type="number" value="0"></div><div class="chk"><label><input type="checkbox" id="c-actif" checked> Visible sur le site</label></div></div>
+<div class="acts"><button class="btn" type="submit">Enregistrer</button><button class="btn alt" type="button" id="c-cancel" hidden>Annuler</button></div></form><div id="chapList" class="list2"></div></section>
+<section id="v-form" hidden><form class="panel2" id="ff"><h2>Ajouter / modifier un formateur</h2><input type="hidden" id="f-id">
+<div class="g2"><div><label for="f-nom">Nom complet</label><input id="f-nom" required maxlength="100"></div><div><label for="f-titre">Titre / rôle</label><input id="f-titre" maxlength="120" placeholder="Formateur en anglais des affaires"></div></div>
+<div><label for="f-bio">Présentation</label><textarea id="f-bio" rows="3" maxlength="500"></textarea></div>
+<div class="g2"><div><label for="f-tags">Mots-clés (séparés par des virgules)</label><input id="f-tags" placeholder="VIP 1:1, Google Meet"></div><div><label for="f-file">Photo (JPG ou PNG)</label><input id="f-file" type="file" accept="image/*"></div></div>
+<div class="g4"><div><label for="f-ordre">Ordre</label><input id="f-ordre" type="number" value="0"></div><div class="chk"><label><input type="checkbox" id="f-actif" checked> Visible sur le site</label></div></div>
+<div class="acts"><button class="btn" type="submit">Enregistrer</button><button class="btn alt" type="button" id="f-cancel" hidden>Annuler</button></div></form><div id="fmList2" class="list2"></div></section>
+</main></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script><script src="config.js"></script><script src="js/site.js"></script><script src="js/admin.js"></script></body></html>

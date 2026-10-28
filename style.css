@@ -227,3 +227,5 @@ footer a{display:block;text-decoration:none;line-height:2;color:#b9c8f3;transiti
 .facts{gap:6px 16px;margin-bottom:20px;font-size:.88rem}.hero3 .row{flex-direction:column;gap:10px}.hero3 .btn{width:100%;padding:16px 18px}.who{margin-top:18px}
 .mos{height:180px;grid-template-columns:1fr 1.2fr 1fr;grid-template-rows:1fr;gap:10px}.m1{grid-row:auto;order:2}.m2{order:1}.m3{order:3}
 .mos figure{border-radius:16px}.mos figcaption{left:7px;bottom:7px;font-size:.64rem;padding:3px 8px}.live{display:none}}
+.tr .ph{width:160px;height:160px;border-radius:50%;background:var(--sky);color:var(--blue);display:grid;place-items:center;font-size:3rem;font-weight:800}
+@media(max-width:860px){.tr .ph{margin:auto}}
