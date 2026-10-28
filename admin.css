@@ -14,3 +14,15 @@ td select{padding:6px 8px;font-size:.85rem;width:auto}.del{all:unset;cursor:poin
 .list2{display:grid;gap:10px}.item{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 18px;display:flex;gap:14px;align-items:center;justify-content:space-between}.item img,.item .ph2{width:48px;height:48px;border-radius:50%;object-fit:cover;flex:none;background:var(--sky);display:grid;place-items:center;font-weight:800;color:var(--blue)}.item .tx{flex:1;min-width:0}.item b{color:var(--navy)}.item small{display:block;color:var(--mute)}.badge{font-size:.74rem;font-weight:700;padding:3px 10px;border-radius:99px;background:var(--sky);color:var(--navy)}.badge.off{background:#fde8e8;color:#b3261e}.item .ac{display:flex;gap:14px;align-items:center}.edit{all:unset;cursor:pointer;color:var(--blue);font-weight:600;font-size:.88rem}
 #toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--navy);color:#fff;padding:12px 20px;border-radius:12px;font-weight:600;font-size:.9rem;opacity:0;pointer-events:none;transition:.25s;z-index:50}#toast.on{opacity:1}#toast.bad{background:#b3261e}
 @media(max-width:860px){.kpis{grid-template-columns:1fr 1fr}.cards2,.g2{grid-template-columns:1fr}.g4{grid-template-columns:1fr 1fr}.br{grid-template-columns:110px 1fr 28px}.who2 span{display:none}.item{flex-wrap:wrap}}
+.login{background:radial-gradient(600px 360px at 85% 0,#dbe7ff,transparent 70%),radial-gradient(500px 320px at 0 100%,#e6efff,transparent 70%),#f4f6fc}
+.login .box{grid-template-columns:minmax(0,1fr);gap:16px;padding:40px 34px 34px;max-width:420px;text-align:center;border-radius:26px}
+.login .box>*{min-width:0}
+.login .box img{margin:0 auto 4px;width:56px;height:56px}
+.login .box h1{font-size:1.65rem;letter-spacing:-.03em;line-height:1.15;margin:0}
+.login .box .muted{margin:-6px 0 6px}
+.login .box div{text-align:left}
+.login .box input{width:100%}
+.login .err{min-height:0;margin:0;text-align:center}.login .err:empty{display:none}
+.login .box .btn.full{margin-top:4px}
+.login .back{font-size:.86rem;color:var(--mute);text-decoration:none}.login .back:hover{color:var(--blue)}
+@media(max-width:480px){.login .box{padding:32px 22px 26px}.login .box h1{font-size:1.45rem}}
