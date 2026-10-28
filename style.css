@@ -207,6 +207,3 @@ footer a{display:block;text-decoration:none;line-height:2;color:#b9c8f3;transiti
 .fc2:nth-child(1){transform:rotate(-8deg) translateY(8px)}
 .fc2:nth-child(5){transform:rotate(8deg) translateY(8px)}
 .fc2:nth-child(3){transform:translateY(-6px)}}
-.logo img,.flogo img{width:auto;height:40px;box-shadow:none;border-radius:0;object-fit:contain}
-.flogo img{height:46px}
-@media(max-width:860px){.logo img{height:32px}.flogo img{height:40px}}
