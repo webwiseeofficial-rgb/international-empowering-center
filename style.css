@@ -201,3 +201,9 @@ footer a{display:block;text-decoration:none;line-height:2;color:#b9c8f3;transiti
 .fc2:nth-child(2){transform:rotate(-8deg) translateY(8px)}.fc2:nth-child(4){transform:rotate(8deg) translateY(8px)}.fc2:nth-child(3){transform:translateY(-6px)}
 .fc2 .cap{padding:24px 8px 8px}.fc2 .cap b{font-size:.76rem}.fc2 .cap small{display:none!important}
 .hero2 .row{margin-top:20px}}
+@media(max-width:860px){
+.fc2:nth-child(1),.fc2:nth-child(5){display:block}
+.fc2:nth-child(2),.fc2:nth-child(4){display:none}
+.fc2:nth-child(1){transform:rotate(-8deg) translateY(8px)}
+.fc2:nth-child(5){transform:rotate(8deg) translateY(8px)}
+.fc2:nth-child(3){transform:translateY(-6px)}}
