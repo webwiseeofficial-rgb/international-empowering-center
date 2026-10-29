@@ -242,3 +242,11 @@ footer a{display:block;text-decoration:none;line-height:2;color:#b9c8f3;transiti
 .lvl .say{flex:none;margin:0;background:var(--sky);border-radius:14px 14px 14px 4px;padding:11px 14px;font-size:.88rem;color:var(--navy);font-weight:600;font-style:italic;line-height:1.4}
 .lvl .more{margin-top:auto;display:block;text-align:center;border:1.5px solid var(--sky2);border-radius:10px;padding:10px;font-size:.9rem}.lvl .more:hover{background:var(--navy);border-color:var(--navy);color:#fff}
 @media(max-width:860px){.lvl{padding:0}.lh{padding:16px 18px}.lc{font-size:2.5rem}.lb{padding:14px 18px 18px;gap:12px}}
+.mosaic{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-flow:dense;gap:16px}
+.tile2{position:relative;display:block;height:240px;border-radius:24px;overflow:hidden;color:#fff;text-decoration:none;background:linear-gradient(135deg,var(--navy),var(--blue));box-shadow:var(--sh)}.tile2.w{grid-column:span 2}
+.tile2 img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s}.tile2:hover img{transform:scale(1.06)}
+.tile2::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,31,92,0) 35%,rgba(7,20,64,.9))}
+.tile2 .tx{position:absolute;left:18px;right:18px;bottom:16px;z-index:1}.tile2 small{display:inline-block;background:rgba(255,255,255,.22);backdrop-filter:blur(6px);padding:3px 11px;border-radius:99px;font-weight:700;font-size:.74rem;margin-bottom:8px}
+.tile2 b{display:block;font-size:1.12rem;line-height:1.2;letter-spacing:-.015em}.tile2.w b{font-size:1.4rem}
+.tile2 .go{position:absolute;top:14px;right:14px;z-index:1;width:36px;height:36px;border-radius:50%;background:#fff;color:var(--navy);display:grid;place-items:center;font-weight:800;transition:.25s}.tile2:hover .go{background:var(--blue);color:#fff;transform:translate(2px,-2px)}
+@media(max-width:860px){.mosaic{display:flex}.mosaic.snap>*{flex:0 0 74%}.tile2{height:210px;border-radius:20px}.tile2 b,.tile2.w b{font-size:1.1rem}}
