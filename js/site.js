@@ -17,6 +17,14 @@ async function chapitres(){
     const a=Math.min(c.niveau_min,c.niveau_max),b=Math.max(c.niveau_min,c.niveau_max);
     return `<article class="course" data-lv="${LV.slice(a,b+1).join(" ")}">${c.image_url?`<div class="cov pic"><img src="${esc(c.image_url)}" alt="" loading="lazy"></div>`:`<div class="cov b${i%4+1}">${ico(c.icone)}</div>`}<div class="cb"><div class="meta"><span class="tag" style="background:var(--navy);color:#fff">VIP 1:1</span><span class="tag">${LV[a]} → ${LV[b]}</span></div><h3>${esc(c.titre)}</h3><p>${esc(c.description)}</p><div class="cf"><b>VIP 1:1 · Google Meet</b><a class="btn sm" href="inscription.html?parcours=${encodeURIComponent(c.titre)}">S’inscrire</a></div></div></article>`}).join("");
 }
+// ---- Chapitres (page d'accueil)
+async function homeChap(){
+  const g=document.getElementById("homeChap");if(!g||!db)return;
+  const {data,error}=await db.from("chapitres").select("*").eq("actif",true).order("ordre");
+  if(error||!data||!data.length)return;const C=["A1","A2","B1","B2","C1","C2"];
+  g.innerHTML=data.map((c,i)=>{const a=Math.min(c.niveau_min,c.niveau_max),b=Math.max(c.niveau_min,c.niveau_max),w=(i%6===0||i%6===5)?" w":"";
+    return `<a class="tile2${w}" href="formations.html#chapitres">${c.image_url?`<img src="${esc(c.image_url)}" alt="" loading="lazy">`:""}<span class="go" aria-hidden="true">→</span><span class="tx"><small>${C[a]} → ${C[b]}</small><b>${esc(c.titre)}</b></span></a>`}).join("");
+}
 // ---- Formateurs (page Formateurs)
 let trainers=null;
 async function formateurs(){
@@ -56,5 +64,5 @@ document.querySelectorAll(".filters button").forEach(b=>b.addEventListener("clic
   document.querySelectorAll(".filters button").forEach(x=>x.classList.remove("on"));b.classList.add("on");
   document.querySelectorAll(".course").forEach(e=>e.hidden=b.dataset.l!="all"&&!e.dataset.lv.split(" ").includes(b.dataset.l));
 }));
-chapitres();formateurs();form();
+chapitres();homeChap();formateurs();form();
 })();
