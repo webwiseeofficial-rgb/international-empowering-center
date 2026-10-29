@@ -250,3 +250,13 @@ footer a{display:block;text-decoration:none;line-height:2;color:#b9c8f3;transiti
 .tile2 b{display:block;font-size:1.12rem;line-height:1.2;letter-spacing:-.015em}.tile2.w b{font-size:1.4rem}
 .tile2 .go{position:absolute;top:14px;right:14px;z-index:1;width:36px;height:36px;border-radius:50%;background:#fff;color:var(--navy);display:grid;place-items:center;font-weight:800;transition:.25s}.tile2:hover .go{background:var(--blue);color:#fff;transform:translate(2px,-2px)}
 @media(max-width:860px){.mosaic{display:flex}.mosaic.snap>*{flex:0 0 74%}.tile2{height:210px;border-radius:20px}.tile2 b,.tile2.w b{font-size:1.1rem}}
+.tcard{background:#fff;border:1px solid var(--line);border-radius:28px;padding:30px;box-shadow:0 40px 70px -40px rgba(11,31,92,.5);display:grid;gap:14px;max-width:440px;margin-left:auto;width:100%}
+.tt{display:flex;align-items:center;gap:12px}.tt img{width:46px;height:46px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 3px #fff,0 0 0 4px var(--sky2)}.tt small{display:block;color:var(--blue);font-weight:700;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase}.tt b{color:var(--navy);font-size:.95rem}
+.tcard h2{font-size:1.7rem;line-height:1.1;margin:4px 0 0}.tcard p{color:var(--mute);font-size:.96rem}
+.tl{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}.tl span{background:var(--bg);color:var(--fg);text-align:center;font-weight:800;font-size:.82rem;padding:9px 0;border-radius:10px}
+.walink{display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;color:#1a8f45;font-weight:700;font-size:.9rem}.walink svg{width:20px;height:20px}.walink:hover{text-decoration:underline}
+.wa{position:fixed;right:22px;bottom:22px;z-index:40;width:58px;height:58px;border-radius:50%;background:#25d366;color:#fff;display:grid;place-items:center;box-shadow:0 12px 26px -8px rgba(37,211,102,.7);transition:.2s}.wa:hover{transform:scale(1.07)}.wa svg{width:30px;height:30px}
+.sbar{display:none}.wa2{background:#25d366}.wa2:hover{background:#1fb457}.wa2 svg{width:20px;height:20px}
+@media(max-width:860px){.tcard{margin:0;padding:22px 20px;max-width:none;gap:12px}.tcard h2{font-size:1.4rem}
+.wa{display:none}body{padding-bottom:76px}
+.sbar{display:grid;grid-template-columns:1fr 1fr;gap:10px;position:fixed;left:0;right:0;bottom:0;z-index:40;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:10px 14px calc(10px + env(safe-area-inset-bottom,0px))}.sbar .btn{padding:13px 10px;font-size:.95rem;gap:8px}}
