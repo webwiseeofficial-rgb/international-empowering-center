@@ -211,7 +211,6 @@ footer a{display:block;text-decoration:none;line-height:2;color:#b9c8f3;transiti
 .h3w{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
 .kick3{display:flex;align-items:center;gap:8px;font:700 1.75rem/1 'Caveat',cursive;color:var(--blue);margin-bottom:18px}.kick3 em{font-style:normal;margin-left:4px}
 .hero3 h1{font-size:clamp(2.9rem,6.2vw,5.4rem);line-height:.98;letter-spacing:-.045em;margin-bottom:20px}
-.hero3 mark{background:linear-gradient(transparent 66%,#f6b72c 66% 90%,transparent 90%);color:inherit;padding:0 4px;margin:0 -4px}
 .hero3 .lead{margin-bottom:22px;max-width:44ch}
 .facts{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:8px 22px;margin:0 0 28px;font-weight:600;color:var(--navy);font-size:.95rem}.facts li{display:flex;gap:8px;align-items:center}
 .ck{width:18px;height:18px;fill:none;stroke:var(--blue);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;flex:none}
@@ -229,3 +228,6 @@ footer a{display:block;text-decoration:none;line-height:2;color:#b9c8f3;transiti
 .mos figure{border-radius:16px}.mos figcaption{left:7px;bottom:7px;font-size:.64rem;padding:3px 8px}.live{display:none}}
 .tr .ph{width:160px;height:160px;border-radius:50%;background:var(--sky);color:var(--blue);display:grid;place-items:center;font-size:3rem;font-weight:800}
 @media(max-width:860px){.tr .ph{margin:auto}}
+.hero3 h1 .and{display:block;font-size:.42em;font-weight:800;letter-spacing:-.025em;color:var(--blue);margin-top:.35em;line-height:1.1}
+.cov.pic{height:158px;background:var(--sky)}.cov.pic::after{display:none}.cov.pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s}.course:hover .cov.pic img{transform:scale(1.05)}
+@media(max-width:860px){.cov.pic{height:130px}}

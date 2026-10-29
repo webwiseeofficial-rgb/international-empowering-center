@@ -14,8 +14,8 @@
 <section id="v-stats"></section>
 <section id="v-insc" hidden><div class="toolbar"><input id="q" placeholder="Rechercher un nom, e-mail, téléphone…"><select id="fs"><option value="">Tous les statuts</option><option>nouveau</option><option>contacté</option><option>inscrit</option><option>annulé</option></select><button class="btn alt sm" id="csv">Exporter en CSV</button></div><div class="tw"><table id="tbl"></table></div></section>
 <section id="v-chap" hidden><form class="panel2" id="cf"><h2>Ajouter / modifier un chapitre</h2><input type="hidden" id="c-id">
-<div class="g2"><div><label for="c-titre">Titre</label><input id="c-titre" required maxlength="120"></div><div><label for="c-icone">Icône</label><select id="c-icone"></select></div></div>
-<div><label for="c-desc">Description</label><textarea id="c-desc" rows="2" maxlength="300"></textarea></div>
+<div class="g2"><div><label for="c-titre">Titre</label><input id="c-titre" required maxlength="120"></div><div><label for="c-file">Image (JPG ou PNG)</label><input id="c-file" type="file" accept="image/*"></div></div>
+<div><label for="c-icone">Icône (utilisée seulement s’il n’y a pas d’image)</label><select id="c-icone"></select></div><div><label for="c-desc">Description</label><textarea id="c-desc" rows="2" maxlength="300"></textarea></div>
 <div class="g4"><div><label for="c-min">Niveau minimum</label><select id="c-min"></select></div><div><label for="c-max">Niveau maximum</label><select id="c-max"></select></div><div><label for="c-ordre">Ordre</label><input id="c-ordre" type="number" value="0"></div><div class="chk"><label><input type="checkbox" id="c-actif" checked> Visible sur le site</label></div></div>
 <div class="acts"><button class="btn" type="submit">Enregistrer</button><button class="btn alt" type="button" id="c-cancel" hidden>Annuler</button></div></form><div id="chapList" class="list2"></div></section>
 <section id="v-form" hidden><form class="panel2" id="ff"><h2>Ajouter / modifier un formateur</h2><input type="hidden" id="f-id">
