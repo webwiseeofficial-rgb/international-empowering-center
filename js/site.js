@@ -40,7 +40,7 @@ async function form(){
   const pc=document.getElementById("pc"),nv=document.getElementById("nv"),fm=document.getElementById("fm");
   if(db){
     const [c,t]=await Promise.all([db.from("chapitres").select("titre").eq("actif",true).order("ordre"),db.from("formateurs").select("nom").eq("actif",true).order("ordre")]);
-    if(c.data&&c.data.length&&pc)pc.innerHTML='<option>Je ne sais pas encore</option>'+c.data.map(x=>`<option>${esc(x.titre)}</option>`).join("");
+    if(c.data&&c.data.length&&pc)pc.innerHTML='<option>Test de niveau</option><option>Je ne sais pas encore</option>'+c.data.map(x=>`<option>${esc(x.titre)}</option>`).join("");
     if(t.data&&t.data.length&&fm){fm.innerHTML=t.data.map(x=>`<option>${esc(x.nom)}</option>`).join("");if(t.data.length>1)document.getElementById("fmw").hidden=false}
   }
   const q=params.get("parcours"),v=params.get("niveau"),w=params.get("formateur");
