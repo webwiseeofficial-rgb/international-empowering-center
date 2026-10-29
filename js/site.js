@@ -15,7 +15,7 @@ async function chapitres(){
   if(error||!data||!data.length)return;
   g.innerHTML=data.map((c,i)=>{
     const a=Math.min(c.niveau_min,c.niveau_max),b=Math.max(c.niveau_min,c.niveau_max);
-    return `<article class="course" data-lv="${LV.slice(a,b+1).join(" ")}"><div class="cov b${i%4+1}">${ico(c.icone)}</div><div class="cb"><div class="meta"><span class="tag" style="background:var(--navy);color:#fff">VIP 1:1</span><span class="tag">${LV[a]} → ${LV[b]}</span></div><h3>${esc(c.titre)}</h3><p>${esc(c.description)}</p><div class="cf"><b>VIP 1:1 · Google Meet</b><a class="btn sm" href="inscription.html?parcours=${encodeURIComponent(c.titre)}">S’inscrire</a></div></div></article>`}).join("");
+    return `<article class="course" data-lv="${LV.slice(a,b+1).join(" ")}">${c.image_url?`<div class="cov pic"><img src="${esc(c.image_url)}" alt="" loading="lazy"></div>`:`<div class="cov b${i%4+1}">${ico(c.icone)}</div>`}<div class="cb"><div class="meta"><span class="tag" style="background:var(--navy);color:#fff">VIP 1:1</span><span class="tag">${LV[a]} → ${LV[b]}</span></div><h3>${esc(c.titre)}</h3><p>${esc(c.description)}</p><div class="cf"><b>VIP 1:1 · Google Meet</b><a class="btn sm" href="inscription.html?parcours=${encodeURIComponent(c.titre)}">S’inscrire</a></div></div></article>`}).join("");
 }
 // ---- Formateurs (page Formateurs)
 let trainers=null;

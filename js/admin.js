@@ -61,16 +61,22 @@ $("#csv").addEventListener("click",()=>{const c=["created_at","prenom","nom","em
 // ---- Chapitres
 $("#c-icone").innerHTML=Object.keys(IC).map(k=>`<option>${k}</option>`).join("");
 $("#c-min").innerHTML=$("#c-max").innerHTML=LV.map((l,i)=>`<option value="${i}">${l}</option>`).join("");$("#c-max").value=5;
-function chapList(){$("#chapList").innerHTML=S.chap.map(c=>`<div class="item" data-id="${c.id}"><div class="tx"><b>${esc(c.titre)}</b><small>${LV[c.niveau_min]} → ${LV[c.niveau_max]} · ordre ${c.ordre}</small></div><span class="badge${c.actif?"":" off"}">${c.actif?"Visible":"Masqué"}</span><div class="ac"><button class="edit">Modifier</button><button class="del">Supprimer</button></div></div>`).join("")||'<p class="muted">Aucun chapitre.</p>'}
-function cReset(){$("#cf").reset();$("#c-id").value="";$("#c-max").value=5;$("#c-cancel").hidden=true}
+function chapList(){$("#chapList").innerHTML=S.chap.map(c=>`<div class="item" data-id="${c.id}">${c.image_url?`<img src="${esc(c.image_url)}" alt="">`:`<div class="ph2">${esc(c.titre.slice(0,1))}</div>`}<div class="tx"><b>${esc(c.titre)}</b><small>${LV[c.niveau_min]} → ${LV[c.niveau_max]} · ordre ${c.ordre}</small></div><span class="badge${c.actif?"":" off"}">${c.actif?"Visible":"Masqué"}</span><div class="ac"><button class="edit">Modifier</button><button class="del">Supprimer</button></div></div>`).join("")||'<p class="muted">Aucun chapitre.</p>'}
+function cReset(){$("#cf").reset();$("#cf").dataset.photo="";$("#c-id").value="";$("#c-max").value=5;$("#c-cancel").hidden=true}
 $("#c-cancel").addEventListener("click",cReset);
-$("#cf").addEventListener("submit",async e=>{e.preventDefault();
-  const p={titre:$("#c-titre").value.trim(),description:$("#c-desc").value.trim(),icone:$("#c-icone").value,niveau_min:+$("#c-min").value,niveau_max:+$("#c-max").value,ordre:+$("#c-ordre").value||0,actif:$("#c-actif").checked},id=$("#c-id").value;
-  if(p.niveau_min>p.niveau_max)return toast("Le niveau minimum doit être inférieur au maximum",true);
-  const {error}=id?await db.from("chapitres").update(p).eq("id",id):await db.from("chapitres").insert(p);if(error)return fail(error);
-  cReset();toast("Chapitre enregistré");loadAll()});
+$("#cf").addEventListener("submit",async e=>{e.preventDefault();const btn=e.target.querySelector("button[type=submit]");btn.disabled=true;
+  try{
+    let img=$("#cf").dataset.photo||null;const file=$("#c-file").files[0];
+    if(file){if(file.size>3e6)throw new Error("Image trop lourde (3 Mo maximum)");
+      const path=Date.now()+"-"+file.name.replace(/[^a-zA-Z0-9.]/g,"_"),up=await db.storage.from("photos").upload(path,file);if(up.error)throw up.error;
+      img=db.storage.from("photos").getPublicUrl(path).data.publicUrl}
+    const p={titre:$("#c-titre").value.trim(),description:$("#c-desc").value.trim(),icone:$("#c-icone").value,image_url:img,niveau_min:+$("#c-min").value,niveau_max:+$("#c-max").value,ordre:+$("#c-ordre").value||0,actif:$("#c-actif").checked},id=$("#c-id").value;
+    if(p.niveau_min>p.niveau_max)throw new Error("Le niveau minimum doit être inférieur au maximum");
+    const {error}=id?await db.from("chapitres").update(p).eq("id",id):await db.from("chapitres").insert(p);if(error)throw error;
+    cReset();toast("Chapitre enregistré");loadAll();
+  }catch(err){fail(err)}btn.disabled=false});
 $("#chapList").addEventListener("click",async e=>{const it=e.target.closest(".item");if(!it)return;const c=S.chap.find(x=>x.id===it.dataset.id);
-  if(e.target.classList.contains("edit")){$("#c-id").value=c.id;$("#c-titre").value=c.titre;$("#c-desc").value=c.description||"";$("#c-icone").value=c.icone;$("#c-min").value=c.niveau_min;$("#c-max").value=c.niveau_max;$("#c-ordre").value=c.ordre;$("#c-actif").checked=c.actif;$("#c-cancel").hidden=false;scrollTo({top:0,behavior:"smooth"})}
+  if(e.target.classList.contains("edit")){$("#c-id").value=c.id;$("#c-titre").value=c.titre;$("#c-desc").value=c.description||"";$("#c-icone").value=c.icone;$("#c-min").value=c.niveau_min;$("#c-max").value=c.niveau_max;$("#c-ordre").value=c.ordre;$("#c-actif").checked=c.actif;$("#cf").dataset.photo=c.image_url||"";$("#c-cancel").hidden=false;scrollTo({top:0,behavior:"smooth"})}
   if(e.target.classList.contains("del")){if(!confirm("Supprimer ce chapitre ?"))return;const {error}=await db.from("chapitres").delete().eq("id",c.id);if(error)return fail(error);toast("Chapitre supprimé");loadAll()}});
 // ---- Formateurs
 function fmList(){$("#fmList2").innerHTML=S.fm.map(f=>`<div class="item" data-id="${f.id}">${f.photo_url?`<img src="${esc(f.photo_url)}" alt="">`:`<div class="ph2">${esc(f.nom.slice(0,1))}</div>`}<div class="tx"><b>${esc(f.nom)}</b><small>${esc(f.titre)}</small></div><span class="badge${f.actif?"":" off"}">${f.actif?"Visible":"Masqué"}</span><div class="ac"><button class="edit">Modifier</button><button class="del">Supprimer</button></div></div>`).join("")||'<p class="muted">Aucun formateur.</p>'}
