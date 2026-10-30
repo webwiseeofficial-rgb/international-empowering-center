@@ -15,7 +15,7 @@ async function chapitres(){
   if(error||!data||!data.length)return;
   g.innerHTML=data.map((c,i)=>{
     const a=Math.min(c.niveau_min,c.niveau_max),b=Math.max(c.niveau_min,c.niveau_max);
-    return `<article class="course" data-lv="${LV.slice(a,b+1).join(" ")}">${c.image_url?`<div class="cov pic"><img src="${esc(c.image_url)}" alt="" loading="lazy"></div>`:`<div class="cov b${i%4+1}">${ico(c.icone)}</div>`}<div class="cb"><div class="meta"><span class="tag" style="background:var(--navy);color:#fff">VIP 1:1</span><span class="tag">${LV[a]} → ${LV[b]}</span></div><h3>${esc(c.titre)}</h3><p>${esc(c.description)}</p><div class="cf"><b>VIP 1:1 · Google Meet</b><a class="btn sm" href="inscription.html?parcours=${encodeURIComponent(c.titre)}">S’inscrire</a></div></div></article>`}).join("");
+    return `<article class="course" data-lv="${LV.slice(a,b+1).join(" ")}">${c.image_url?`<div class="cov pic"><img src="${esc(c.image_url)}" alt="" loading="lazy"></div>`:`<div class="cov b${i%4+1}">${ico(c.icone)}</div>`}<div class="cb"><div class="meta"><span class="tag" style="background:var(--navy);color:#fff">VIP 1:1</span><span class="tag">${LV[a]} → ${LV[b]}</span></div><h3>${esc(c.titre)}</h3><p>${esc(c.description)}</p><div class="cf"><b>VIP 1:1 · Google Meet</b><a class="btn sm" href="/inscription?parcours=${encodeURIComponent(c.titre)}">S’inscrire</a></div></div></article>`}).join("");
 }
 // ---- Chapitres (page d'accueil)
 async function homeChap(){
@@ -23,7 +23,7 @@ async function homeChap(){
   const {data,error}=await db.from("chapitres").select("*").eq("actif",true).order("ordre");
   if(error||!data||!data.length)return;const C=["A1","A2","B1","B2","C1","C2"];
   g.innerHTML=data.map((c,i)=>{const a=Math.min(c.niveau_min,c.niveau_max),b=Math.max(c.niveau_min,c.niveau_max),w=(i%6===0||i%6===5)?" w":"";
-    return `<a class="tile2${w}" href="formations.html#chapitres">${c.image_url?`<img src="${esc(c.image_url)}" alt="" loading="lazy">`:""}<span class="go" aria-hidden="true">→</span><span class="tx"><small>${C[a]} → ${C[b]}</small><b>${esc(c.titre)}</b></span></a>`}).join("");
+    return `<a class="tile2${w}" href="/formations#chapitres">${c.image_url?`<img src="${esc(c.image_url)}" alt="" loading="lazy">`:""}<span class="go" aria-hidden="true">→</span><span class="tx"><small>${C[a]} → ${C[b]}</small><b>${esc(c.titre)}</b></span></a>`}).join("");
 }
 // ---- Formateurs (page Formateurs)
 let trainers=null;
@@ -32,7 +32,7 @@ async function formateurs(){
   const {data,error}=await db.from("formateurs").select("*").eq("actif",true).order("ordre");
   if(error||!data||!data.length)return;trainers=data;
   const l=document.getElementById("fmList");if(!l)return;
-  l.innerHTML=data.map(f=>`<div class="tr" style="margin-bottom:16px">${f.photo_url?`<img src="${esc(f.photo_url)}" alt="${esc(f.nom)}">`:`<div class="ph">${esc(f.nom.slice(0,1))}</div>`}<div><h2 style="font-size:1.9rem;margin-bottom:4px">${esc(f.nom)}</h2><p style="color:var(--mute);margin-bottom:8px">${esc(f.titre)}</p><p>${esc(f.bio)}</p><p style="margin-top:8px">${(f.tags||[]).map(t=>`<span class="tag">${esc(t)}</span> `).join("")}</p><p><a class="btn" style="margin-top:16px" href="inscription.html?formateur=${encodeURIComponent(f.nom)}">Suivre ses cours</a></p></div></div>`).join("")+`<div class="tr soon"><p>De nouveaux formateurs rejoindront bientôt la plateforme.</p></div>`;
+  l.innerHTML=data.map(f=>`<div class="tr" style="margin-bottom:16px">${f.photo_url?`<img src="${esc(f.photo_url)}" alt="${esc(f.nom)}">`:`<div class="ph">${esc(f.nom.slice(0,1))}</div>`}<div><h2 style="font-size:1.9rem;margin-bottom:4px">${esc(f.nom)}</h2><p style="color:var(--mute);margin-bottom:8px">${esc(f.titre)}</p><p>${esc(f.bio)}</p><p style="margin-top:8px">${(f.tags||[]).map(t=>`<span class="tag">${esc(t)}</span> `).join("")}</p><p><a class="btn" style="margin-top:16px" href="/inscription?formateur=${encodeURIComponent(f.nom)}">Suivre ses cours</a></p></div></div>`).join("")+`<div class="tr soon"><p>De nouveaux formateurs rejoindront bientôt la plateforme.</p></div>`;
 }
 // ---- Formulaire d'inscription
 async function form(){
@@ -56,7 +56,7 @@ async function form(){
     const row={prenom:d.get("prenom").trim(),nom:d.get("nom").trim(),email:d.get("email").trim(),telephone:d.get("telephone").trim(),parcours:d.get("parcours"),niveau:d.get("niveau"),objectif:(d.get("objectif")||"").trim()||null,formateur:d.get("formateur")};
     const {error}=await db.from("inscriptions").insert(row);
     if(error){msg.textContent="Une erreur est survenue. Réessayez ou appelez le 0778 330153.";btn.disabled=false;btn.textContent="Envoyer mon inscription"}
-    else location.href="merci.html";
+    else location.href="/merci";
   });
 }
 // ---- Filtre par niveau
